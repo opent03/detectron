@@ -42,7 +42,7 @@ def cifar10(split='train', normalize=True, augment=False):
     train, rest = [torchvision.datasets.CIFAR10(
         root=cfg.get_dataset_path('cifar10'),
         train=x,
-        download=False,
+        download=True,
         transform=Compose(transform)
     ) for x in [True, False]]
 
