@@ -72,9 +72,10 @@ class Divergence:
             return self.get_js_distance(X, Y)
 
 
-def permutation_test(distance, X, Y, perms=500, alpha=5e-2, enable_tqdm=False):
+def permutation_test(distance, est, X, Y, perms=500, alpha=5e-2, enable_tqdm=False):
+    
     # get initial distance estimate
-    est = distance.get_distance(X, Y)
+    #est = distance.get_distance(X, Y)
     XuY = np.concatenate([X, Y], axis=0)
     distr = []
     f = tqdm if enable_tqdm else lambda x: x 
