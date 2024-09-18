@@ -27,9 +27,6 @@ class Divergence:
         '''
         Returns the empirical estimate of the H-Min divergence between samples X and Y
         '''
-        if len(X) > len(Y):
-            idx = np.random.choice(len(X), len(Y), replace=False)
-            X = X[idx]
         XY = np.concatenate([X, Y], axis=0)
         logprob_1 = self._get_kde_estimates(self.bandwidth, X)
         logprob_2 = self._get_kde_estimates(self.bandwidth, Y)
@@ -44,9 +41,6 @@ class Divergence:
         Given two datasets, fit 2 gaussians on each of them.
         Then, compute the kl-divergence between them depending on the mode.
         '''
-        if len(X) > len(Y):
-            idx = np.random.choice(len(X), len(Y), replace=False)
-            X = X[idx]
         ed = lambda x: np.expand_dims(x, axis=1)
         mean_X, mean_Y = ed(np.mean(X, axis=0)), ed(np.mean(Y, axis=0))
         cov_X, cov_Y = np.cov(X.T), np.cov(Y.T)
@@ -59,10 +53,6 @@ class Divergence:
         return np.ravel(KL)[0] 
     
     def get_js_distance(self, X, Y):
-        if len(X) > len(Y):
-            idx = np.random.choice(len(X), len(Y), replace=False)
-            X = X[idx]
-        
         # mixture distribution
         idx = np.random.choice(len(X), int(len(Y)/2), replace=False)
         idy = np.random.choice(len(Y), int(len(Y)/2), replace=False)
@@ -89,8 +79,12 @@ def permutation_test(distance, X, Y, perms=500, alpha=5e-2, enable_tqdm=False):
     distr = []
     f = tqdm if enable_tqdm else lambda x: x 
     
-    for i in f(range(perms)):
+    # balance the samples after computing their raw distance
+    if len(X) > len(Y):
+        idx = np.random.choice(len(X), len(Y), replace=False)
+        X = X[idx]
         
+    for i in f(range(perms)):
         np.random.shuffle(XuY)
         idx = np.random.choice(len(XuY), len(Y))
         X_, Y_ = XuY[idx[:len(Y)//2]], XuY[idx[len(Y)//2:]]
