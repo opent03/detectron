@@ -22,8 +22,8 @@ def main():
     parser.add_argument('--n_runs', type=int, default=100)
     parser.add_argument('--n_perms', type=int, default=500)
     parser.add_argument('--test_size', type=int, default=50)
-    parser.add_argument('--slurm_job_id', type='str', default='NA')
-    parser.add_argument('--userid', type='str', default='opent03')
+    parser.add_argument('--slurm_job_id', type=str, default='NA')
+    parser.add_argument('--userid', type=str, default='opent03')
     args = parser.parse_args()
     
     # Loading -----------------------------------------
@@ -43,7 +43,6 @@ def main():
             flag_list = pickle.load(f)
             print('Checkpointed run, current progress: {}/{}.'.format(len(flag_list), args.n_runs))
 
-    
     # Permutation tests -------------------------------
     
     print('Running permutation tests for {} divergence'.format(args.name))
