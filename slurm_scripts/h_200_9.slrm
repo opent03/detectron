@@ -1,10 +1,11 @@
 #!/bin/bash
 #SBATCH --job-name=h_200_9
 #SBATCH -c 16
-#SBATCH --qos=cpu_qos
-#SBATCH --partition=cpu
+#SBATCH --qos=m4
+#SBATCH --partition=t4v1,t4v2,rtx6000,a40
+#SBATCH --gres=gpu:1
 #SBATCH --mem=16G
-#SBATCH --time=4:00:00
+#SBATCH --time=2:00:00
 #SBATCH --output=slurm_logs/h_200_9.out
 #SBATCH --error=slurm_logs/h_200_9.err
 #SBATCH --open-mode=append
@@ -17,7 +18,7 @@ source ~/.bashrc
 conda activate dis
 which python
 
-/h/opent03/.conda/envs/dis/bin/python -u run_div.py --name=h --dataset=cifar10 --test_size=200 &
+/h/opent03/.conda/envs/dis/bin/python -u run_div.py --name=h --dataset=cifar10 --test_size=200 --slurm_job_id=$SLURM_JOB_ID &
 child="$!"
 wait "$child"
 
