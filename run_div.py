@@ -37,7 +37,7 @@ def main():
     
     # Write results to file ---------------------------
     
-    with open('baselines/logs/{}.log'.format(args.name), 'a') as f:
+    with open('baselines/training_logs/{}.log'.format(args.name), 'a') as f:
         f.write('{}\n'.format(tpr))
     
     

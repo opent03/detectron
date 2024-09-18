@@ -1,0 +1,25 @@
+#!/bin/bash
+#SBATCH --job-name=js_100_8
+#SBATCH -c 16
+#SBATCH --qos=m4
+#SBATCH --partition=t4v1,t4v2,a40
+#SBATCH --gres=gpu:1
+#SBATCH --mem=16G
+#SBATCH --time=2:00:00
+#SBATCH --output=slurm_logs/js_100_8.out
+#SBATCH --error=slurm_logs/js_100_8.err
+#SBATCH --open-mode=append
+#SBATCH --signal=B:USR1@120
+term_handler() {
+	scontrol requeue "${SLURM_JOB_ID}"
+}
+trap term_handler SIGUSR1
+source ~/.bashrc
+conda activate dis
+which python
+
+/h/opent03/.conda/envs/dis/bin/python -u run_div.py --name=js --dataset=cifar10 --test_size=100 &
+child="$!"
+wait "$child"
+
+            
