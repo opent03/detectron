@@ -1,8 +1,5 @@
 import numpy as np
 from scipy import stats
-import torchvision
-import torch
-from torchvision import transforms
 from tqdm import tqdm
 
 MEAN, STD = (0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)
