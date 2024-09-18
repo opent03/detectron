@@ -1,11 +1,10 @@
 #!/bin/bash
 #SBATCH --job-name=js_100_6
 #SBATCH -c 16
-#SBATCH --qos=m4
-#SBATCH --partition=t4v1,t4v2,a40
-#SBATCH --gres=gpu:1
+#SBATCH --qos=cpu_qos
+#SBATCH --partition=cpu
 #SBATCH --mem=16G
-#SBATCH --time=2:00:00
+#SBATCH --time=4:00:00
 #SBATCH --output=slurm_logs/js_100_6.out
 #SBATCH --error=slurm_logs/js_100_6.err
 #SBATCH --open-mode=append
