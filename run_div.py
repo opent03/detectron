@@ -29,10 +29,9 @@ def main():
     # Loading -----------------------------------------
     
     x_train, x_test, y_train, y_test = loader_dict[args.dataset](**args.loader_args)
-    idx = np.random.choice(len(x_test), args.test_size, replace=False)
-    x_test = x_test[idx]
     
     # Restore checkpoint if exists --------------------
+    
     checkpoint_path = '/checkpoint/{}/{}'.format(args.userid, args.slurm_job_id)
     if not os.path.exists(checkpoint_path):
         checkpoint_path = 'checkpoint/{}/{}'.format(args.userid, args.slurm_job_id)
@@ -50,10 +49,13 @@ def main():
     
     print('Running permutation tests for {} divergence'.format(args.name))
     distance = Divergence(args.name)
-    est = distance.get_distance(x_train, x_test)
     
     for run in tqdm(range(len(flag_list), args.n_runs)):
-        flag, _, _ = permutation_test(distance, est, x_train, x_test, perms=args.n_perms)
+        flag, _, _ = permutation_test(distance, 
+                                      X=x_train, 
+                                      Y=x_test, 
+                                      perms=args.n_perms,
+                                      max_size=args.test_size)
         flag_list.append(flag)
         with open(os.path.join(checkpoint_path, 'flag_list'), 'wb') as f:
             pickle.dump(flag_list, f)
