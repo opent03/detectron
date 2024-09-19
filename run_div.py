@@ -18,7 +18,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--name', type=str, default='kl')
     parser.add_argument('--dataset', type=str, default='cifar10')
-    parser.add_argument('--loader_args', type=str, default="{'n_components':10}")
+    parser.add_argument('--loader_args', type=str, default="{'n_components':20}")
     parser.add_argument('--n_runs', type=int, default=100)
     parser.add_argument('--n_perms', type=int, default=500)
     parser.add_argument('--test_size', type=int, default=50)

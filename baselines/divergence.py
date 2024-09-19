@@ -91,7 +91,6 @@ def permutation_test(distance, X, Y, perms=500, alpha=5e-2, enable_tqdm=False, m
         #print('Time elapsed: {}'.format(end - start ))
         
     q = np.quantile(distr, 1-alpha)
-    print(int(est > q))
     return int(est > q), distr, est
 
 
