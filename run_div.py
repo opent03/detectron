@@ -33,8 +33,11 @@ def main():
     x_test = x_test[idx]
     
     # Restore checkpoint if exists --------------------
-    
     checkpoint_path = '/checkpoint/{}/{}'.format(args.userid, args.slurm_job_id)
+    if not os.path.exists(checkpoint_path):
+        checkpoint_path = 'checkpoint/{}/{}'.format(args.userid, args.slurm_job_id)
+        os.makedirs(checkpoint_path, exist_ok=True)
+        
     if not os.path.exists(os.path.join(checkpoint_path, 'flag_list')): # running on home computer
         print('No checkpoint found, starting fresh instance.')
         flag_list = []
