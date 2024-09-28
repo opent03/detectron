@@ -72,8 +72,8 @@ def main():
                                         perms=args.n_perms,
                                         max_size=args.test_size)
             flag_list.append(flag)
-            with open(os.path.join(checkpoint_path, 'flag_list'), 'wb') as f:
-                pickle.dump(flag_list, f)
+            #with open(os.path.join(checkpoint_path, 'flag_list'), 'wb') as f:
+            #    pickle.dump(flag_list, f)
             
         tpr = sum(flag_list) / args.n_runs
         
