@@ -63,22 +63,24 @@ def main():
     distance = DK_MMD(**mmd_config)
     distance.load('baselines/mmd_cifar_weights.pth')
     
-    for run in tqdm(range(len(flag_list), args.n_runs)):
-        flag, _, _ = permutation_test(distance, 
-                                      X=x_train, 
-                                      Y=x_test, 
-                                      perms=args.n_perms,
-                                      max_size=args.test_size)
-        flag_list.append(flag)
-        with open(os.path.join(checkpoint_path, 'flag_list'), 'wb') as f:
-            pickle.dump(flag_list, f)
+    for jj in range(10):
+        print('round {}'.format(jj))
+        for run in tqdm(range(len(flag_list), args.n_runs)):
+            flag, _, _ = permutation_test(distance, 
+                                        X=x_train, 
+                                        Y=x_test, 
+                                        perms=args.n_perms,
+                                        max_size=args.test_size)
+            flag_list.append(flag)
+            with open(os.path.join(checkpoint_path, 'flag_list'), 'wb') as f:
+                pickle.dump(flag_list, f)
+            
+        tpr = sum(flag_list) / args.n_runs
         
-    tpr = sum(flag_list) / args.n_runs
-    
-    # Write results to file ---------------------------
-    
-    with open('baselines/tprs_{}/{}_{}.log'.format(args.dataset, args.name, args.test_size), 'a+') as f:
-        f.write('{}\n'.format(tpr))
+        # Write results to file ---------------------------
+        
+        with open('baselines/tprs_{}/{}_{}.log'.format(args.dataset, args.name, args.test_size), 'a+') as f:
+            f.write('{}\n'.format(tpr))
     
 
 if __name__ == '__main__':
