@@ -1,0 +1,26 @@
+#!/bin/bash
+#SBATCH --job-name=mmd_50_1
+#SBATCH --account=deadline
+#SBATCH -c 16
+#SBATCH --qos=deadline
+#SBATCH --partition=t4v1,t4v2,rtx6000,a40
+#SBATCH --gres=gpu:1
+#SBATCH --mem=16G
+#SBATCH --time=24:00:00
+#SBATCH --output=slurm_logs/mmd_50_1.out
+#SBATCH --error=slurm_logs/mmd_50_1.err
+#SBATCH --open-mode=append
+#SBATCH --signal=B:USR1@120
+term_handler() {
+	scontrol requeue "${SLURM_JOB_ID}"
+}
+trap term_handler SIGUSR1
+source ~/.bashrc
+conda activate dis
+which python
+
+/h/opent03/.conda/envs/dis/bin/python -u run_mmd.py --name=mmd --dataset=camelyon17 --loader_args="{'n_components':20}" --test_size=50 --slurm_job_id=$SLURM_JOB_ID &
+child="$!"
+wait "$child"
+
+            
