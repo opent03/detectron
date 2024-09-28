@@ -5,6 +5,7 @@ import numpy as np
 import argparse
 from baselines.cifar10_loader import load_and_process_cifar
 from baselines.uci_loader import load_and_process_uci
+from baselines.camelyon17_loader import load_and_process_camelyon17
 from baselines.divergence import permutation_test
 from baselines.dkmmd import DK_MMD
 from matplotlib import pyplot as plt
@@ -12,8 +13,18 @@ from tqdm import tqdm
 
 loader_dict = {
     'cifar10': load_and_process_cifar,
-    'uci': load_and_process_uci
+    'uci': load_and_process_uci,
+    'camelyon17': load_and_process_camelyon17
 }
+
+class DataDistribution:
+    def __init__(self, data):
+        self.data = data
+        self.length = len(self.data)
+    
+    def sample(self, n):
+        idx = np.random.choice(self.length, n, replace=False)
+        return self.data[idx]
 
 def main():
     parser = argparse.ArgumentParser()
@@ -28,19 +39,26 @@ def main():
     args = parser.parse_args()
     args.loader_args = eval(args.loader_args)
     
+    # Printing ----------------------------------------
+    
+    print('Algorithm: DK-MMD\nDataset: {}\n'.format(args.dataset))
+    
     # Loading -----------------------------------------
     
     x_train, x_test, y_train, y_test = loader_dict[args.dataset](**args.loader_args)
+    
+    P = DataDistribution(x_train)
+    Q = DataDistribution(x_test)
     mmd_config = {
-        'n': len(x_test),  # lower of the two
+        'n': 2000,  # lower of the two
         'X': x_train,
         'Y': x_test,
         'n_features': 20,
         'hidden_dim': 32,
         'lr': 1e-4,
         'train_epochs': 500,
-        'P': None,
-        'Q': None
+        'P': P,
+        'Q': Q
     }
     distance = DK_MMD(**mmd_config)
     
@@ -80,8 +98,8 @@ def main():
                                     perms=args.n_perms,
                                     max_size=args.test_size)
         flag_list.append(flag)
-        #with open(os.path.join(checkpoint_path, 'flag_list'), 'wb') as f:
-        #    pickle.dump(flag_list, f)
+        with open(os.path.join(checkpoint_path, 'flag_list'), 'wb') as f:
+            pickle.dump(flag_list, f)
         
     tpr = sum(flag_list) / args.n_runs
     
