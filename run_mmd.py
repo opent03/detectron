@@ -75,7 +75,7 @@ def main():
     if not os.path.exists(os.path.join(checkpoint_path, 'mmd_weights.pth')):
         print('No DK-MMD weights saved. Training...')
         distance.train()
-        distance.save(os.path.join(checkpoint_path, 'mmd_weights.pth'))
+        distance.save(checkpoint_path, 'mmd_weights.pth')
     else:
         distance.load(os.path.join(checkpoint_path, 'mmd_weights.pth'))
     
