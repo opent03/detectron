@@ -81,6 +81,7 @@ def main():
         
         with open('baselines/tprs_{}/{}_{}.log'.format(args.dataset, args.name, args.test_size), 'a+') as f:
             f.write('{}\n'.format(tpr))
+        flag_list = []
     
 
 if __name__ == '__main__':
