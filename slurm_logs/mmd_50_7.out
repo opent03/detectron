@@ -1,0 +1,30 @@
+/h/opent03/.conda/envs/dis/bin/python
+Algorithm: DK-MMD
+Dataset: camelyon17
+
+Distribution oracles provided. Will be using oracles instead of samples.
+n:2000	 d: 20
+Epsilon: -23.043840
+No DK-MMD weights saved. Training...
+mmd:  0.016543468460440636 mmd_std:  0.05968747287988663 Statistic:  0.2771681845188141
+mmd:  0.13694506883621216 mmd_std:  0.1848256140947342 Statistic:  0.7409420609474182
+mmd:  0.0719740241765976 mmd_std:  0.13942843675613403 Statistic:  0.5162076354026794
+mmd:  0.09754336625337601 mmd_std:  0.15512186288833618 Statistic:  0.6288176774978638
+mmd:  0.10536497086286545 mmd_std:  0.1259482055902481 Statistic:  0.8365738391876221
+Done training!
+/h/opent03/.conda/envs/dis/bin/python
+Algorithm: DK-MMD
+Dataset: camelyon17
+
+Distribution oracles provided. Will be using oracles instead of samples.
+n:2000	 d: 20
+Epsilon: -23.253872
+No DK-MMD weights saved. Training...
+mmd:  -0.005797454621642828 mmd_std:  0.0633392482995987 Statistic:  -0.0915302112698555
+mmd:  0.10696639120578766 mmd_std:  0.12556055188179016 Statistic:  0.8519108295440674
+mmd:  0.05455715209245682 mmd_std:  0.0707799568772316 Statistic:  0.770799458026886
+mmd:  0.13340255618095398 mmd_std:  0.11362324655056 Statistic:  1.1740779876708984
+mmd:  0.11454779654741287 mmd_std:  0.17266924679279327 Statistic:  0.6633943319320679
+Done training!
+No checkpoint found, starting fresh instance.
+Running permutation tests for mmd
