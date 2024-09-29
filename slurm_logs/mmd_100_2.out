@@ -17,3 +17,35 @@ mmd:  8.769829582888633e-05 mmd_std:  0.0020175643730908632 Statistic:  0.043467
 Done training!
 No checkpoint found, starting fresh instance.
 Running permutation tests for mmd
+/h/opent03/.conda/envs/dis/bin/python
+Algorithm: DK-MMD
+Dataset: cifar10
+
+PCA explained variance ratio:  0.806592323551861
+n:2000	 d: 20
+Epsilon: -24.863695
+No DK-MMD weights saved. Training...
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+mmd:  -2.8902277335873805e-06 mmd_std:  0.00011715498112607747 Statistic:  -0.02467012219130993
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0156, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0156, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0156, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0156, device='cuda:0', grad_fn=<DivBackward0>)
+mmd:  -0.0014623631723225117 mmd_std:  0.008201835677027702 Statistic:  -0.17829705774784088
+mmd:  0.0007745906477794051 mmd_std:  0.008798950351774693 Statistic:  0.08803216367959976
+mmd:  -0.0006007944466546178 mmd_std:  0.00710704131051898 Statistic:  -0.08453509956598282
+mmd:  0.0007528550340794027 mmd_std:  0.002223124960437417 Statistic:  0.33864718675613403
+Done training!
+No checkpoint found, starting fresh instance.
+Running permutation tests for mmd

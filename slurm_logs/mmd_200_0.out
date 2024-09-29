@@ -37,3 +37,35 @@ mmd:  0.0025562234222888947 mmd_std:  0.011002369225025177 Statistic:  0.2323339
 Done training!
 No checkpoint found, starting fresh instance.
 Running permutation tests for mmd
+/h/opent03/.conda/envs/dis/bin/python
+Algorithm: DK-MMD
+Dataset: cifar10
+
+PCA explained variance ratio:  0.806592323551861
+n:2000	 d: 20
+Epsilon: -23.076403
+No DK-MMD weights saved. Training...
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+mmd:  -7.05206002749037e-06 mmd_std:  0.00015780102694407105 Statistic:  -0.044689569622278214
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0156, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0156, device='cuda:0', grad_fn=<DivBackward0>)
+mmd:  0.0007423369097523391 mmd_std:  0.004267961252480745 Statistic:  0.17393243312835693
+mmd:  1.1545943380042445e-05 mmd_std:  0.001381990616209805 Statistic:  0.00835457444190979
+mmd:  0.00012779119424521923 mmd_std:  0.0010688723996281624 Statistic:  0.11955701559782028
+mmd:  0.0017966923769563437 mmd_std:  0.00888028647750616 Statistic:  0.20232369005680084
+Done training!
+No checkpoint found, starting fresh instance.
+Running permutation tests for mmd
