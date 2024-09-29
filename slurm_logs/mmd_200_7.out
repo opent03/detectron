@@ -1,0 +1,30 @@
+/h/opent03/.conda/envs/dis/bin/python
+Algorithm: DK-MMD
+Dataset: cifar10
+
+PCA explained variance ratio:  0.8065923235518607
+Distribution oracles provided. Will be using oracles instead of samples.
+n:2000	 d: 20
+Epsilon: -23.433298
+No DK-MMD weights saved. Training...
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+mmd:  -1.622627365804874e-09 mmd_std:  0.00013210064207669348 Statistic:  -1.2283266187296249e-05
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0156, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0156, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0156, device='cuda:0', grad_fn=<DivBackward0>)
+mmd:  0.0018477365374565125 mmd_std:  0.008760763332247734 Statistic:  0.21091045439243317
+mmd:  -0.001090513775125146 mmd_std:  0.006719603203237057 Statistic:  -0.16228841245174408
+mmd:  0.0006165701779536903 mmd_std:  0.003827582811936736 Statistic:  0.1610860526561737
+mmd:  0.0023776781745254993 mmd_std:  0.009198847226798534 Statistic:  0.258475661277771
+Done training!
+No checkpoint found, starting fresh instance.
+Running permutation tests for mmd

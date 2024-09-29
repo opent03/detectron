@@ -1,0 +1,19 @@
+/h/opent03/.conda/envs/dis/bin/python
+Algorithm: DK-MMD
+Dataset: cifar10
+
+PCA explained variance ratio:  0.8065923235518608
+Distribution oracles provided. Will be using oracles instead of samples.
+n:2000	 d: 20
+Epsilon: -23.099335
+No DK-MMD weights saved. Training...
+mmd:  -0.00021214284060988575 mmd_std:  0.001045973040163517 Statistic:  -0.20281864702701569
+error_var!!tensor(0.0156, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0156, device='cuda:0', grad_fn=<DivBackward0>)
+mmd:  -1.9070666894549504e-05 mmd_std:  0.0014073657803237438 Statistic:  -0.013550611212849617
+mmd:  0.0011354946764186025 mmd_std:  0.007854986004531384 Statistic:  0.1445571929216385
+mmd:  -0.00017937699158210307 mmd_std:  0.01171265821903944 Statistic:  -0.0153147978708148
+mmd:  0.0001501798105891794 mmd_std:  0.0005414074985310435 Statistic:  0.2773877680301666
+Done training!
+No checkpoint found, starting fresh instance.
+Running permutation tests for mmd

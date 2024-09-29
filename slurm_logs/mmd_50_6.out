@@ -1,0 +1,24 @@
+/h/opent03/.conda/envs/dis/bin/python
+Algorithm: DK-MMD
+Dataset: cifar10
+
+PCA explained variance ratio:  0.8065923235518608
+Distribution oracles provided. Will be using oracles instead of samples.
+n:2000	 d: 20
+Epsilon: -23.763762
+No DK-MMD weights saved. Training...
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0156, device='cuda:0', grad_fn=<DivBackward0>)
+mmd:  9.477790285927767e-07 mmd_std:  9.999999747378752e-05 Statistic:  0.00947779044508934
+error_var!!tensor(0.0039, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0156, device='cuda:0', grad_fn=<DivBackward0>)
+error_var!!tensor(0.0156, device='cuda:0', grad_fn=<DivBackward0>)
+mmd:  0.001755808712914586 mmd_std:  0.006990239955484867 Statistic:  0.2511800229549408
+mmd:  0.0005683614290319383 mmd_std:  0.005561466328799725 Statistic:  0.10219632834196091
+mmd:  -0.00020309640967752784 mmd_std:  0.0021550548262894154 Statistic:  -0.09424187242984772
+mmd:  0.0012283234391361475 mmd_std:  0.004399904515594244 Statistic:  0.2791704833507538
+Done training!
+No checkpoint found, starting fresh instance.
+Running permutation tests for mmd
