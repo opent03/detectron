@@ -57,8 +57,8 @@ def main():
         'hidden_dim': 32,
         'lr': 1e-4,
         'train_epochs': 500,
-        'P': P,
-        'Q': Q
+        'P': None,
+        'Q': None
     }
     distance = DK_MMD(**mmd_config)
     
