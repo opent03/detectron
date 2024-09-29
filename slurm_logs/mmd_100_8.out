@@ -48,3 +48,19 @@ mmd:  0.003703248454257846 mmd_std:  0.01615653559565544 Statistic:  0.229210555
 Done training!
 No checkpoint found, starting fresh instance.
 Running permutation tests for mmd
+/h/opent03/.conda/envs/dis/bin/python
+Algorithm: DK-MMD
+Dataset: cifar10
+
+PCA explained variance ratio:  0.8065923235518607
+n:1000	 d: 20
+Epsilon: -23.970655
+No DK-MMD weights saved. Training...
+mmd:  -0.00028949789702892303 mmd_std:  0.0008689407841302454 Statistic:  -0.3331618309020996
+mmd:  0.00042760977521538734 mmd_std:  0.0010406168876215816 Statistic:  0.41091951727867126
+mmd:  0.0012449761852622032 mmd_std:  0.0027149904053658247 Statistic:  0.4585563838481903
+mmd:  0.0002696571173146367 mmd_std:  0.0008689407841302454 Statistic:  0.31032854318618774
+mmd:  -0.0007322625024244189 mmd_std:  0.002179121132940054 Statistic:  -0.33603569865226746
+Done training!
+No checkpoint found, starting fresh instance.
+Running permutation tests for mmd
