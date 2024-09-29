@@ -34,6 +34,8 @@ def main():
     parser.add_argument('--n_runs', type=int, default=100)
     parser.add_argument('--n_perms', type=int, default=500)
     parser.add_argument('--test_size', type=int, default=50)
+    parser.add_argument('--oracle', type=bool, default=False)
+    # logistics arguments
     parser.add_argument('--slurm_job_id', type=str, default='NA')
     parser.add_argument('--userid', type=str, default='opent03')
     args = parser.parse_args()
@@ -47,15 +49,17 @@ def main():
     
     x_train, x_test, y_train, y_test = loader_dict[args.dataset](**args.loader_args)
     
-    P = DataDistribution(x_train)
-    Q = DataDistribution(x_test)
+    # Same training regime as DK-MMD paper for cifar10)
+    x_val, x_test = x_test[:1000], x_test[1000:]
+    x_train = x_train[np.random.choice(len(x_train), 1000, replace=False)]
+    
     mmd_config = {
-        'n': 2000,  # lower of the two
+        'n': 1000,  
         'X': x_train,
-        'Y': x_test,
+        'Y': x_val,
         'n_features': 20,
         'hidden_dim': 32,
-        'lr': 1e-4,
+        'lr': 5e-5,
         'train_epochs': 500,
         'P': None,
         'Q': None

@@ -74,9 +74,9 @@ def h1_mean_var_gram(Kx, Ky, Kxy, is_var_computed, use_1sample_U=True):
     hh = Kx+Ky-Kxy-Kxy.transpose(0,1)
     V1 = torch.dot(hh.sum(1)/ny,hh.sum(1)/ny) / ny
     V2 = (hh).sum() / (nx) / nx
-    varEst = 4*(V1 - V2**2)
-    if  varEst == 0.0:
-        print('error_var!!'+str(V1))
+    varEst = torch.abs(4*(V1 - V2**2))
+    #if  varEst == 0.0:
+    #    print('error_var!!'+str(V1))
     return mmd2, varEst, Kxyxy
 
 def MMDu(Fea, len_s, Fea_org, sigma, sigma0=0.1, epsilon = 10**(-10), is_smooth=True, is_var_computed=True, use_1sample_U=True):
@@ -220,10 +220,10 @@ class DK_MMD:
                 mmd, var, _ = MMDu(model_output, int(len(S)/2), S, sigma=sigma_q, sigma0=sigma_phi, epsilon=eps)
                 mmd_value_temp = -1 * (mmd + 1e-8)
                 mmd_std_temp = torch.sqrt(var + 1e-8)
-                if mmd_std_temp.item() == 0:
-                    print('error 1!!')
-                if np.isnan(mmd_std_temp.item()):
-                    print('error 2!!')
+                #if mmd_std_temp.item() == 0:
+                #    print('error 1!!')
+                #if np.isnan(mmd_std_temp.item()):
+                #   print('error 2!!')
                 STAT_u = torch.div(mmd_value_temp, mmd_std_temp)
                 self.optimizer.zero_grad()
                 STAT_u.backward(retain_graph=True)

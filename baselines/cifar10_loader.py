@@ -25,13 +25,16 @@ def load_and_process_cifar(n_components=10):
     x_train, y_train = load_cifar10_512()
     x_test, y_test = load_cifar101_512()
     
+    # shuffle train
     xy_train = np.concatenate([x_train, np.expand_dims(y_train, axis=1)], axis=1)
     np.random.shuffle(xy_train)
     x_train, y_train = xy_train[:, :512], xy_train[:,512:]
     
+    # shuffle test
     xy_test = np.concatenate([x_test, np.expand_dims(y_test, axis=1)], axis=1)
     np.random.shuffle(xy_test)
     x_test, y_test = xy_test[:, :512], xy_test[:,512:]
+    
     # PCA -----------------------------------------
     pca = PCA(n_components=n_components)
     pca.fit(x_train)
