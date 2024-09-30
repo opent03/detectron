@@ -11,3 +11,6 @@ mmd:  -6.92546927894e-06 mmd_std:  9.999999747378752e-05 Statistic:  -0.06925469
 mmd:  1.1726886441465467e-05 mmd_std:  9.999999747378752e-05 Statistic:  0.117268867790699
 mmd:  2.2540789359482005e-05 mmd_std:  0.00229891506023705 Statistic:  0.009804968722164631
 mmd:  -3.97087205783464e-05 mmd_std:  0.0001995052007259801 Statistic:  -0.19903601706027985
+Done training!
+No checkpoint found, starting fresh instance.
+Running permutation tests for mmd
