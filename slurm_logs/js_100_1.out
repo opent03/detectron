@@ -1,0 +1,9 @@
+/h/opent03/.conda/envs/dis/bin/python
+Algorithm: DK-MMD
+Dataset: cifar10
+
+PCA explained variance ratio:  0.6929380769713297
+n:1000	 d: 20
+Epsilon: -23.893444
+No DK-MMD weights saved. Training...
+mmd:  3.314052082714625e-05 mmd_std:  0.0002906988374888897 Statistic:  0.11400293558835983
