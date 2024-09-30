@@ -46,5 +46,5 @@ def load_and_process_cifar(n_components=20):
     x_train_pca, x_test_pca = pca.transform(x_train), pca.transform(x_test)
     x_val_pca = pca.transform(x_val)
     print('PCA explained variance ratio: ', sum(pca.explained_variance_ratio_))
-    return x_train_pca, x_test_pca, y_train, y_test
+    return x_train_pca, x_val_pca, x_test_pca, y_train, y_val, y_test
     
