@@ -5,7 +5,7 @@ import numpy as np
 import argparse
 from baselines.cifar10_loader import load_and_process_cifar
 from baselines.uci_loader import load_and_process_uci
-from baselines.camelyon17_loader import load_and_process_camelyon17
+from baselines.camelyon17_loader import load_and_process_camelyon17, load_and_process_camelyon17_mmd
 from baselines.divergence import permutation_test
 from baselines.dkmmd import DK_MMD
 from matplotlib import pyplot as plt
@@ -14,7 +14,7 @@ from tqdm import tqdm
 loader_dict = {
     'cifar10': load_and_process_cifar,
     'uci': load_and_process_uci,
-    'camelyon17': load_and_process_camelyon17
+    'camelyon17': load_and_process_camelyon17_mmd,
 }
 
 class DataDistribution:
