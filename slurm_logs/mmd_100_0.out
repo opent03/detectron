@@ -14,3 +14,4 @@ mmd:  3.080224269069731e-05 mmd_std:  9.999999747378752e-05 Statistic:  0.308022
 Done training!
 No checkpoint found, starting fresh instance.
 Running permutation tests for mmd
+/h/opent03/.conda/envs/dis/bin/python
