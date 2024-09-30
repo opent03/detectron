@@ -1,0 +1,24 @@
+#!/bin/bash
+#SBATCH --job-name=kl_200_7
+#SBATCH -c 16
+#SBATCH --qos=cpu_qos
+#SBATCH --partition=cpu
+#SBATCH --mem=16G
+#SBATCH --time=8:00:00
+#SBATCH --output=slurm_logs/kl_200_7.out
+#SBATCH --error=slurm_logs/kl_200_7.err
+#SBATCH --open-mode=append
+#SBATCH --signal=B:USR1@120
+term_handler() {
+	scontrol requeue "${SLURM_JOB_ID}"
+}
+trap term_handler SIGUSR1
+source ~/.bashrc
+conda activate dis
+which python
+
+/h/opent03/.conda/envs/dis/bin/python -u run_mmd.py --name=kl --dataset=cifar10 --loader_args="{'n_components':20}" --test_size=200 --slurm_job_id=$SLURM_JOB_ID &
+child="$!"
+wait "$child"
+
+            

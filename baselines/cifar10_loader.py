@@ -1,4 +1,5 @@
 import numpy as np
+import sklearn
 from sklearn.decomposition import PCA
 
 
@@ -20,6 +21,29 @@ def load_cifar101_512():
         y_test = np.load(f)
     return x_test, y_test
 
+def load_and_process_cifar(n_components=20):
+    tmp = {}
+    splits = ['train', 'val', 'test']
+    kk = ['x', 'y']
+    # load iid 
+    for k in kk:
+        for split in splits:
+            with open('baselines/data/cifar10_' + k + '_' + split + '.npy', 'rb') as f:
+                tmp[k + '_' + split] = np.load(f)
+    
+    with open('baselines/data/cifar101_x_test.npy', 'rb') as f:
+                tmp['x_test_ood'] = np.load(f)
+    with open('baselines/data/cifar10.1_v6_labels.npy', 'rb') as f:
+                tmp['y_test_ood'] = np.load(f)
+                
+    tmp['x_test_ood'], tmp['y_test_ood'] = sklearn.utils.shuffle(tmp['x_test_ood'], tmp['y_test_ood'])
+    pca = PCA(n_components=n_components)
+    pca.fit(tmp['x_train'], tmp['y_train'])
+    print('PCA explained variance ratio: ', sum(pca.explained_variance_ratio_))
+    x_train, x_test = pca.transform(tmp['x_train']), pca.transform(tmp['x_test_ood'])
+    return x_train, x_test, tmp['y_train'], tmp['y_test_ood']
+
+'''
 def load_and_process_cifar(n_components=20):
     # load datasets -------------------------------
     x_train, x_val, y_train, y_val = load_cifar10_512()
@@ -47,4 +71,5 @@ def load_and_process_cifar(n_components=20):
     x_val_pca = pca.transform(x_val)
     print('PCA explained variance ratio: ', sum(pca.explained_variance_ratio_))
     return x_train_pca, x_val_pca, x_test_pca, y_train, y_val, y_test
+    '''
     

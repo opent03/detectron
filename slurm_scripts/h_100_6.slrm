@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH --job-name=mmd_100_3
+#SBATCH --job-name=h_100_6
 #SBATCH -c 16
-#SBATCH --qos=normal
+#SBATCH --qos=m3
 #SBATCH --partition=t4v1,t4v2,rtx6000,a40
 #SBATCH --gres=gpu:1
 #SBATCH --mem=16G
-#SBATCH --time=16:00:00
-#SBATCH --output=slurm_logs/mmd_100_3.out
-#SBATCH --error=slurm_logs/mmd_100_3.err
+#SBATCH --time=4:00:00
+#SBATCH --output=slurm_logs/h_100_6.out
+#SBATCH --error=slurm_logs/h_100_6.err
 #SBATCH --open-mode=append
 #SBATCH --signal=B:USR1@120
 term_handler() {
@@ -18,7 +18,7 @@ source ~/.bashrc
 conda activate dis
 which python
 
-/h/opent03/.conda/envs/dis/bin/python -u run_mmd.py --name=mmd --dataset=cifar10 --loader_args="{'n_components':20}" --test_size=100 --slurm_job_id=$SLURM_JOB_ID &
+/h/opent03/.conda/envs/dis/bin/python -u run_mmd.py --name=h --dataset=cifar10 --loader_args="{'n_components':20}" --test_size=100 --slurm_job_id=$SLURM_JOB_ID &
 child="$!"
 wait "$child"
 

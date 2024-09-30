@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --job-name=mmd_100_7
 #SBATCH -c 16
-#SBATCH --qos=m2
+#SBATCH --qos=m
 #SBATCH --partition=t4v1,t4v2,rtx6000,a40
 #SBATCH --gres=gpu:1
 #SBATCH --mem=16G
-#SBATCH --time=8:00:00
+#SBATCH --time=12:00:00
 #SBATCH --output=slurm_logs/mmd_100_7.out
 #SBATCH --error=slurm_logs/mmd_100_7.err
 #SBATCH --open-mode=append
