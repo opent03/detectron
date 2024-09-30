@@ -5,3 +5,12 @@ Dataset: cifar10
 PCA explained variance ratio:  0.6929380769713297
 n:1000	 d: 20
 Epsilon: -23.893070
+No DK-MMD weights saved. Training...
+mmd:  0.0008291361737065017 mmd_std:  0.0025155700277537107 Statistic:  0.3296017050743103
+mmd:  -0.001806390704587102 mmd_std:  0.005576183553785086 Statistic:  -0.3239474892616272
+mmd:  -0.00010985229164361954 mmd_std:  0.0006649313145317137 Statistic:  -0.16520847380161285
+mmd:  -0.00125354144256562 mmd_std:  0.004985000938177109 Statistic:  -0.2514626383781433
+mmd:  3.080224269069731e-05 mmd_std:  9.999999747378752e-05 Statistic:  0.3080224394798279
+Done training!
+No checkpoint found, starting fresh instance.
+Running permutation tests for mmd
