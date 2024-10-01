@@ -1,0 +1,27 @@
+  0%|          | 0/500 [00:00<?, ?it/s]  0%|          | 0/500 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/fs01/home/opent03/detectron/run_mmd.py", line 120, in <module>
+    main()
+  File "/fs01/home/opent03/detectron/run_mmd.py", line 83, in main
+    distance.train()
+  File "/fs01/home/opent03/detectron/baselines/dkmmd.py", line 219, in train
+    model_output = self.feature_map(S)
+  File "/h/opent03/.conda/envs/dis/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/h/opent03/.conda/envs/dis/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/fs01/home/opent03/detectron/baselines/dkmmd.py", line 129, in forward
+    fealant = self.latent(input)
+  File "/h/opent03/.conda/envs/dis/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/h/opent03/.conda/envs/dis/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/h/opent03/.conda/envs/dis/lib/python3.9/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/h/opent03/.conda/envs/dis/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/h/opent03/.conda/envs/dis/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/h/opent03/.conda/envs/dis/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 116, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (64x512 and 20x32)
