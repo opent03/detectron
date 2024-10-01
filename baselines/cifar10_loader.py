@@ -21,7 +21,7 @@ def load_cifar101_512():
         y_test = np.load(f)
     return x_test, y_test
 
-def load_and_process_cifar(n_components=20):
+def load_and_process_cifar(n_components=20, return_all=False):
     tmp = {}
     splits = ['train', 'val', 'test']
     kk = ['x', 'y']
@@ -37,11 +37,14 @@ def load_and_process_cifar(n_components=20):
                 tmp['y_test_ood'] = np.load(f)
                 
     tmp['x_test_ood'], tmp['y_test_ood'] = sklearn.utils.shuffle(tmp['x_test_ood'], tmp['y_test_ood'])
-    pca = PCA(n_components=n_components)
-    pca.fit(tmp['x_train'], tmp['y_train'])
-    print('PCA explained variance ratio: ', sum(pca.explained_variance_ratio_))
-    x_train, x_test = pca.transform(tmp['x_train']), pca.transform(tmp['x_test_ood'])
-    return x_train, x_test, tmp['y_train'], tmp['y_test_ood']
+    #pca = PCA(n_components=n_components)
+    #pca.fit(tmp['x_train'], tmp['y_train'])
+    #print('PCA explained variance ratio: ', sum(pca.explained_variance_ratio_))
+    #x_train, x_test = pca.transform(tmp['x_train']), pca.transform(tmp['x_test_ood'])
+    if not return_all:
+        return tmp['x_train'], tmp['x_test'], tmp['y_train'], tmp['y_test_ood']
+    else:
+        return tmp
 
 '''
 def load_and_process_cifar(n_components=20):

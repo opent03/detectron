@@ -34,12 +34,14 @@ def main():
     parser.add_argument('--n_runs', type=int, default=100)
     parser.add_argument('--n_perms', type=int, default=500)
     parser.add_argument('--test_size', type=int, default=50)
-    parser.add_argument('--write_tprs', type=bool, default=True)
+    parser.add_argument('--write_tprs', type=str, default='True')
     # logistics arguments
     parser.add_argument('--slurm_job_id', type=str, default='NA')
     parser.add_argument('--userid', type=str, default='opent03')
     args = parser.parse_args()
     args.loader_args = eval(args.loader_args)
+    args.write_tprs = True if args.write_tprs == 'True' else False
+    print('Write TPRs? ', args.write_tprs)
     
     # Printing ----------------------------------------
     
