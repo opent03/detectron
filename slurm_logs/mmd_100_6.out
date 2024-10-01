@@ -1,0 +1,11 @@
+/h/opent03/.conda/envs/dis/bin/python
+Write TPRs?  True
+Algorithm: DK-MMD
+Dataset: cifar10
+
+PCA explained variance ratio:  0.9999999999999997
+n:1000	 d: 20
+Epsilon: -23.291086
+No DK-MMD weights saved. Training...
+mmd:  -0.011062448844313622 mmd_std:  0.03407176211476326 Statistic:  -0.3246808648109436
+mmd:  -0.0017803390510380268 mmd_std:  0.004717778414487839 Statistic:  -0.37736809253692627
