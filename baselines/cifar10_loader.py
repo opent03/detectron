@@ -42,7 +42,7 @@ def load_and_process_cifar(n_components=20, return_all=False):
     print('PCA explained variance ratio: ', sum(pca.explained_variance_ratio_))
     x_train, x_test = pca.transform(tmp['x_train']), pca.transform(tmp['x_test_ood'])
     if not return_all:
-        return tmp['x_train'], tmp['x_test'], tmp['y_train'], tmp['y_test_ood']
+        return x_train, x_test, tmp['y_train'], tmp['y_test_ood']
     else:
         return tmp
 
