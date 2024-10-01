@@ -15,3 +15,4 @@ Traceback (most recent call last):
   File "/h/opent03/.conda/envs/dis/lib/python3.9/site-packages/scipy/stats/_kde.py", line 220, in __init__
     raise ValueError(msg)
 ValueError: Number of dimensions is greater than number of samples. This results in a singular data covariance matrix, which cannot be treated using the algorithms implemented in `gaussian_kde`. Note that `gaussian_kde` interprets each *column* of `dataset` to be a point; consider transposing the input to `dataset`.
+  0%|          | 0/100 [00:00<?, ?it/s]  1%|          | 1/100 [00:14<24:29, 14.84s/it]  2%|▏         | 2/100 [00:29<24:04, 14.74s/it]  3%|▎         | 3/100 [00:44<23:46, 14.71s/it]  4%|▍         | 4/100 [00:58<23:29, 14.68s/it]  5%|▌         | 5/100 [01:13<23:11, 14.65s/it]
