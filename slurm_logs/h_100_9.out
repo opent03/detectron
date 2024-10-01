@@ -1,0 +1,16 @@
+/h/opent03/.conda/envs/dis/bin/python
+Algorithm: DK-MMD
+Dataset: cifar10
+
+PCA explained variance ratio:  0.460769748775143
+n:1000	 d: 20
+Epsilon: -23.208944
+No DK-MMD weights saved. Training...
+mmd:  0.004936782643198967 mmd_std:  0.011449044570326805 Statistic:  0.43119603395462036
+mmd:  0.07703488320112228 mmd_std:  0.06551806628704071 Statistic:  1.1757807731628418
+mmd:  0.08671162277460098 mmd_std:  0.06525599211454391 Statistic:  1.3287917375564575
+mmd:  0.10707241296768188 mmd_std:  0.07539031654596329 Statistic:  1.420240879058838
+mmd:  0.09844425320625305 mmd_std:  0.038059454411268234 Statistic:  2.5865912437438965
+Done training!
+No checkpoint found, starting fresh instance.
+Running permutation tests for h
