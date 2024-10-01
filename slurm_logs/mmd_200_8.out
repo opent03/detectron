@@ -1,0 +1,17 @@
+/h/opent03/.conda/envs/dis/bin/python
+Write TPRs?  True
+Algorithm: DK-MMD
+Dataset: cifar10
+
+PCA explained variance ratio:  0.9999999999999997
+n:1000	 d: 20
+Epsilon: -23.079218
+No DK-MMD weights saved. Training...
+mmd:  0.0008429687586612999 mmd_std:  0.035778820514678955 Statistic:  0.023560551926493645
+mmd:  -0.00012658127525355667 mmd_std:  0.00045134808169677854 Statistic:  -0.28045156598091125
+mmd:  9.740618406794965e-05 mmd_std:  0.0008339384803548455 Statistic:  0.11680260300636292
+mmd:  -3.289173662324174e-07 mmd_std:  0.00015780102694407105 Statistic:  -0.002084380481392145
+mmd:  -0.010265973396599293 mmd_std:  0.028814198449254036 Statistic:  -0.35628175735473633
+Done training!
+No checkpoint found, starting fresh instance.
+Running permutation tests for mmd
