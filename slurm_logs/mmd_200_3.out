@@ -1,9 +1,0 @@
-/h/opent03/.conda/envs/dis/bin/python
-Write TPRs?  True
-Algorithm: DK-MMD
-Dataset: cifar10
-
-n:1000	 d: 20
-Epsilon: -23.724121
-No DK-MMD weights saved. Training...
-mmd:  -0.0018967101350426674 mmd_std:  0.07971085608005524 Statistic:  -0.023794878274202347
