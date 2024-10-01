@@ -34,7 +34,7 @@ def main():
     parser.add_argument('--n_runs', type=int, default=100)
     parser.add_argument('--n_perms', type=int, default=500)
     parser.add_argument('--test_size', type=int, default=50)
-    parser.add_argument('--oracle', type=bool, default=False)
+    parser.add_argument('--write_tprs', type=bool, default=True)
     # logistics arguments
     parser.add_argument('--slurm_job_id', type=str, default='NA')
     parser.add_argument('--userid', type=str, default='opent03')
@@ -102,13 +102,14 @@ def main():
                                     perms=args.n_perms,
                                     max_size=args.test_size)
         flag_list.append(flag)
-        with open(os.path.join(checkpoint_path, 'flag_list'), 'wb') as f:
-            pickle.dump(flag_list, f)
+        if args.write_tprs:
+            with open(os.path.join(checkpoint_path, 'flag_list'), 'wb') as f:
+                pickle.dump(flag_list, f)
         
     tpr = sum(flag_list) / args.n_runs
     
     # Write results to file ---------------------------
-    
+
     with open('baselines/tprs_{}/{}_{}.log'.format(args.dataset, args.name, args.test_size), 'a+') as f:
         f.write('{}\n'.format(tpr))
     
