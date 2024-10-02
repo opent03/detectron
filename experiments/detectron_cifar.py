@@ -2,17 +2,32 @@ import os
 import pytorch_lightning as pl
 import torch
 from utils.detectron import DetectronLoader, DetectronModule, EarlyStopper
-
+from models.classifier import MLP
 from tests.detectron.detectron import infer_labels
 from data import sample_data
 from data.core import split_dataset
 import argparse
 import time
+from baselines.cifar10_loader import load_and_process_cifar
 
+class CoolDataset(torch.utils.data.Dataset):
+    def __init__(self, features, labels):
+        self.features = features
+        self.labels = labels
+    
+    def __len__(self):
+        return len(self.labels)
+    
+    def __getitem__(self, idx):
+        i = self.labels[idx]
+        l = torch.zeros(size=(10,))
+        l[i] = 1
+        return torch.tensor(self.features[idx], dtype=torch.float32), torch.tensor(self.labels[idx], dtype=torch.long).squeeze(-1)#l
+    
 parser = argparse.ArgumentParser()
 parser.add_argument('--run_name', type=str, help='Name of the run, data will be stored in results/args.run_name')
-parser.add_argument('--seeds', type=int, default=100, help='Number of seeds to run')
-parser.add_argument('--samples', default=[10, 20, 50], nargs='+', help='Number of samples to use for each dataset')
+parser.add_argument('--seeds', type=int, default=40, help='Number of seeds to run')
+parser.add_argument('--samples', default=[50], nargs='+', help='Number of samples to use for each dataset')
 parser.add_argument('--splits', default=['p', 'q'], nargs='+',
                     help='Run on in or out of distribution data (p, q, or p q)')
 parser.add_argument('--gpu', type=int, default=0, help='ID of GPU to use')
@@ -27,6 +42,7 @@ parser.add_argument('--num_workers', type=int, default=16, help='Number of worke
 parser.add_argument('--lr', type=float, default=1e-3, help='learning rate')
 args = parser.parse_args()
 
+'''
 if os.path.exists(run_dir := os.path.join('results', args.run_name)) and not args.resume:
     raise ValueError(
         f'Run name <{args.run_name}> already exists try passing --resume to resume without overwriting data')
@@ -35,11 +51,30 @@ elif os.path.exists(run_dir) and args.resume:
 else:
     os.makedirs(run_dir)
     print(f'Directory created for run: {run_dir}')
+'''
+run_dir = 'results/'
+#load_model = lambda: torch.hub.load('rgklab/pretrained_models', 'resnet18_cifar10', return_transform=False,
+#                                    verbose=False)
+load_model = lambda : MLP.load_from_checkpoint('pddm_cifar10.pth', input_size=20,
+    hidden_layers=[32, 32],
+    output_size=10,
+    dropout=0.5,
+    logger='auc', loss='ce',
+    loss_params=None, optim='adam',
+    optim_params=dict(lr=1e-4, weight_decay=0),
+    scheduler=None,
+    scheduler_params=None,
+    legacy=True)
 
-load_model = lambda: torch.hub.load('rgklab/pretrained_models', 'resnet18_cifar10', return_transform=False,
-                                    verbose=False)
-p_train, p_val, p_test_all = sample_data.cifar10(split='all')
-q_all = sample_data.cifar10_1()
+# load data here
+dct = load_and_process_cifar(n_components=20, return_all=True)
+x_train, x_val, x_test, x_test_ood =  dct['x_train'], dct['x_val'], dct['x_test'], dct['x_test_ood']
+y_train, y_val, y_test, y_test_ood =  dct['y_train'], dct['y_val'], dct['y_test'], dct['y_test_ood']
+
+p_train = CoolDataset(x_train, y_train)
+p_val = CoolDataset(x_val, y_val)
+p_test_all = CoolDataset(x_test, y_test)
+q_all = CoolDataset(x_test_ood, y_test_ood)
 
 test_sets = {'p': p_test_all, 'q': q_all}
 base_model = load_model()

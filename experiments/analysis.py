@@ -13,7 +13,7 @@ parser.add_argument('--run_name', type=str)
 parser.add_argument('--significance', '--alpha', type=float, default=0.05)
 parser.add_argument('--ensemble_size', '-n', type=int, default=5)
 args = parser.parse_args()
-run_name = 'results/' + args.run_name
+run_name = 'results/'
 
 test_p = [torch.load(x) for x in (glob(f'{run_name}/test_*_p_*.pt'))]
 

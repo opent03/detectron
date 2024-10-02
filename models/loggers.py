@@ -98,8 +98,8 @@ class AUCLogger(Logger):
 
     def __init__(self, log_fn, log_on_step: bool = True, num_classes: int = 2):
         super().__init__(log_fn)
-        self.train_auc = AUROC(num_classes=num_classes)
-        self.val_auc = AUROC(num_classes=num_classes)
+        self.train_auc = AUROC(task='multiclass', num_classes=num_classes)
+        self.val_auc = AUROC(task='multiclass', num_classes=num_classes)
         self.log_on_step = log_on_step
 
     def on_train(self, y_hat, y, loss=None):
