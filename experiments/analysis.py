@@ -13,7 +13,7 @@ parser.add_argument('--run_name', type=str)
 parser.add_argument('--significance', '--alpha', type=float, default=0.05)
 parser.add_argument('--ensemble_size', '-n', type=int, default=5)
 args = parser.parse_args()
-run_name = 'results/'
+run_name = 'results_{}'.format(args.run_name)
 
 test_p = [torch.load(x) for x in (glob(f'{run_name}/test_*_p_*.pt'))]
 
@@ -32,7 +32,8 @@ tq = pd.concat([pd.DataFrame(x) for x in test_q])
 
 tp['rejection_rate'] = (1 - tp['count'] / tp['N'])
 tq['rejection_rate'] = (1 - tq['count'] / tq['N'])
-
+print(np.mean(tp['rejection_rate']))
+print(np.mean(tq['rejection_rate']))
 
 def n_or_last(lst, n):
     if len(lst) <= n:

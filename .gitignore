@@ -983,3 +983,5 @@ cython_debug/
 *.npy
 *.pth
 data/
+
+checkpoints/

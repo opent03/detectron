@@ -26,15 +26,15 @@ class CoolDataset(torch.utils.data.Dataset):
     
 parser = argparse.ArgumentParser()
 parser.add_argument('--run_name', type=str, help='Name of the run, data will be stored in results/args.run_name')
-parser.add_argument('--seeds', type=int, default=40, help='Number of seeds to run')
+parser.add_argument('--seeds', type=int, default=100, help='Number of seeds to run')
 parser.add_argument('--samples', default=[50], nargs='+', help='Number of samples to use for each dataset')
 parser.add_argument('--splits', default=['p', 'q'], nargs='+',
                     help='Run on in or out of distribution data (p, q, or p q)')
 parser.add_argument('--gpu', type=int, default=0, help='ID of GPU to use')
 parser.add_argument('--resume', default=False, action='store_true', help='If not given and run_name exists, will error')
 parser.add_argument('--batch_size', type=int, default=512, help='Batch size for training detectron')
-parser.add_argument('--ensemble_size', type=int, default=5, help='Number of models in the ensemble')
-parser.add_argument('--max_epochs_per_model', type=int, default=5,
+parser.add_argument('--ensemble_size', type=int, default=1, help='Number of models in the ensemble')
+parser.add_argument('--max_epochs_per_model', type=int, default=4,
                     help='Maximum number of training epochs per model in the ensemble')
 parser.add_argument('--patience', type=int, default=2,
                     help='Patience for early stopping based on no improvement on rejection rate for k models')
@@ -52,9 +52,11 @@ else:
     os.makedirs(run_dir)
     print(f'Directory created for run: {run_dir}')
 '''
-run_dir = 'results/'
-#load_model = lambda: torch.hub.load('rgklab/pretrained_models', 'resnet18_cifar10', return_transform=False,
-#                                    verbose=False)
+run_dir = 'results_{}'.format(args.run_name)
+load_model = lambda: torch.hub.load('rgklab/pretrained_models', 'resnet18_cifar10', return_transform=False,
+
+                                    verbose=False)
+'''
 load_model = lambda : MLP.load_from_checkpoint('pddm_cifar10.pth', input_size=20,
     hidden_layers=[32, 32],
     output_size=10,
@@ -65,17 +67,19 @@ load_model = lambda : MLP.load_from_checkpoint('pddm_cifar10.pth', input_size=20
     scheduler=None,
     scheduler_params=None,
     legacy=True)
-
+'''
 # load data here
-dct = load_and_process_cifar(n_components=20, return_all=True)
-x_train, x_val, x_test, x_test_ood =  dct['x_train'], dct['x_val'], dct['x_test'], dct['x_test_ood']
-y_train, y_val, y_test, y_test_ood =  dct['y_train'], dct['y_val'], dct['y_test'], dct['y_test_ood']
+#dct = load_and_process_cifar(n_components=20, return_all=True)
+#x_train, x_val, x_test, x_test_ood =  dct['x_train'], dct['x_val'], dct['x_test'], dct['x_test_ood']
+#y_train, y_val, y_test, y_test_ood =  dct['y_train'], dct['y_val'], dct['y_test'], dct['y_test_ood']
+#
+#p_train = CoolDataset(x_train, y_train)
+#p_val = CoolDataset(x_val, y_val)
+#p_test_all = CoolDataset(x_test, y_test)
+#q_all = CoolDataset(x_test_ood, y_test_ood)
 
-p_train = CoolDataset(x_train, y_train)
-p_val = CoolDataset(x_val, y_val)
-p_test_all = CoolDataset(x_test, y_test)
-q_all = CoolDataset(x_test_ood, y_test_ood)
-
+p_train, p_val, p_test_all = sample_data.cifar10(split='all')
+q_all = sample_data.cifar10_1()
 test_sets = {'p': p_test_all, 'q': q_all}
 base_model = load_model()
 
@@ -194,6 +198,7 @@ for N in map(int, args.samples):
                 # Note 1: we use lambda in the paper, but it is a reserved keyword, so we call it alpha here
                 # Note 2: we use a custom batch sampler which slightly changes the way you compute lambda
                 alpha = 1 / (len(pq_loader.train_dataloader()) * count + 1)
+                #alpha = 100
                 detector = DetectronModule(model=load_model(),
                                            alpha=alpha)
                 print(f'α = {1000 * alpha:.3f} × 10⁻³')
